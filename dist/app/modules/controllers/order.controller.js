@@ -12,9 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createOrder = void 0;
+exports.calculateRevenue = exports.getAllOrders = exports.createOrder = void 0;
 const product_model_1 = __importDefault(require("../models/product.model"));
 const order_model_1 = __importDefault(require("../models/order.model"));
+// Function to create an order
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { product, quantity, email } = req.body;
@@ -51,4 +52,42 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.createOrder = createOrder;
-// Add function for calculateRevenue
+// Function to get all orders
+const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const orders = yield order_model_1.default.find();
+        res.status(200).json({
+            message: "Order list fetched successfully",
+            success: true,
+            data: orders,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            message: "Failed to fetch orders",
+            success: false,
+            error: error.message,
+        });
+    }
+});
+exports.getAllOrders = getAllOrders;
+// Function to calculate total revenue from all orders
+const calculateRevenue = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const orders = yield order_model_1.default.find();
+        const totalRevenue = orders.reduce((total, order) => total + order.totalPrice, 0);
+        res.status(200).json({
+            message: "Revenue calculated successfully",
+            success: true,
+            revenue: totalRevenue,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            message: "Failed to calculate revenue",
+            success: false,
+            error: error.message,
+        });
+    }
+});
+exports.calculateRevenue = calculateRevenue;
