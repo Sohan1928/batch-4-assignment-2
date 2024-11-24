@@ -1,4 +1,6 @@
 "use strict";
+// import mongoose from "mongoose";
+// import app from "./app";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -12,6 +14,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// const PORT = 5000;
+// const MONGO_URI =
+//   "mongodb+srv://stationery-shop:s009Dvh6nIp1W9A1@cluster0.mkohn.mongodb.net/stationeryShopDB?retryWrites=true&w=majority&appName=Cluster0";
+// mongoose
+//   .connect(MONGO_URI)
+//   .then(() => {
+//     console.log("Connected to MongoDB");
+//     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+//   })
+//   .catch((error) => {
+//     console.error("Error connecting to MongoDB:", error);
+//   });
 const mongoose_1 = __importDefault(require("mongoose"));
 const app_1 = __importDefault(require("./app"));
 const config_1 = __importDefault(require("./app/config"));
