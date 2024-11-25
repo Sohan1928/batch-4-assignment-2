@@ -4,9 +4,9 @@ import Product from "../models/product.model";
 // get all products
 export const getAllProducts = async (req: Request, res: Response) => {
   try {
-    const products = await Product.find(); // Fetch all products from the database
+    const products = await Product.find();
     res.status(200).json({
-      message: "Products fetched successfully",
+      message: "All Products fetched successfully",
       success: true,
       data: products,
     });
@@ -18,6 +18,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
     });
   }
 };
+
 // create product
 export const createProduct = async (req: Request, res: Response) => {
   try {

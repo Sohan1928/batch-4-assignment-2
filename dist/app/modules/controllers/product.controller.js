@@ -17,9 +17,9 @@ const product_model_1 = __importDefault(require("../models/product.model"));
 // get all products
 const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const products = yield product_model_1.default.find(); // Fetch all products from the database
+        const products = yield product_model_1.default.find();
         res.status(200).json({
-            message: "Products fetched successfully",
+            message: "All Products fetched successfully",
             success: true,
             data: products,
         });
