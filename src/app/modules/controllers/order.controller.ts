@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Product from "../models/product.model";
 import Order from "../models/order.model";
 
-// Function to create an order
+// create an order
 export const createOrder: any = async (req: Request, res: Response) => {
   try {
     const { product, quantity, email } = req.body;
@@ -17,7 +17,7 @@ export const createOrder: any = async (req: Request, res: Response) => {
 
     if (productData.quantity < quantity) {
       return res.status(400).json({
-        message: "Insufficient stock",
+        message: "Stock not available",
         success: false,
       });
     }
@@ -43,12 +43,12 @@ export const createOrder: any = async (req: Request, res: Response) => {
   }
 };
 
-// Function to get all orders
+// get all orders
 export const getAllOrders = async (req: Request, res: Response) => {
   try {
     const orders = await Order.find();
     res.status(200).json({
-      message: "Order list fetched successfully",
+      message: "Order list show successfully",
       success: true,
       data: orders,
     });
@@ -61,7 +61,7 @@ export const getAllOrders = async (req: Request, res: Response) => {
   }
 };
 
-// Function to calculate total revenue from all orders
+// calculate total revenue from all orders
 export const calculateRevenue = async (req: Request, res: Response) => {
   try {
     const orders = await Order.find();

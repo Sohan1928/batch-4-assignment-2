@@ -27,8 +27,8 @@ const mongoose_1 = __importStar(require("mongoose"));
 var Category;
 (function (Category) {
     Category["Writing"] = "Writing";
-    Category["OfficeSupplies"] = "OfficeSupplies";
-    Category["ArtSupplies"] = "ArtSupplies";
+    Category["OfficeSupplies"] = "Office Supplies";
+    Category["ArtSupplies"] = "Art Supplies";
     Category["Educational"] = "Educational";
     Category["Technology"] = "Technology";
 })(Category || (Category = {}));

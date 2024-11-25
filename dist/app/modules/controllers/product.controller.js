@@ -12,9 +12,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProduct = exports.getProductById = exports.updateProduct = exports.createProduct = void 0;
+exports.deleteProduct = exports.getProductById = exports.updateProduct = exports.createProduct = exports.getAllProducts = void 0;
 const product_model_1 = __importDefault(require("../models/product.model"));
-// Controller function to create a product
+// get all products
+const getAllProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const products = yield product_model_1.default.find(); // Fetch all products from the database
+        res.status(200).json({
+            message: "Products fetched successfully",
+            success: true,
+            data: products,
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            message: "Failed to fetch products",
+            success: false,
+            error: error.message,
+        });
+    }
+});
+exports.getAllProducts = getAllProducts;
+// create product
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const product = yield product_model_1.default.create(req.body);
@@ -33,13 +52,14 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.createProduct = createProduct;
+// update product by id
 const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.params; // Get product ID from params
-        const updateData = req.body; // Get the updated data from the request body
+        const { id } = req.params;
+        const updateData = req.body;
         const updatedProduct = yield product_model_1.default.findByIdAndUpdate(id, updateData, {
-            new: true, // Return the updated document
-            runValidators: true, // Run validation for the updated data
+            new: true,
+            runValidators: true,
         });
         if (!updatedProduct) {
             return res.status(404).json({
@@ -62,7 +82,7 @@ const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.updateProduct = updateProduct;
-// Add other controller functions, like getting a product by ID
+// get product by id
 const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
@@ -88,10 +108,10 @@ const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getProductById = getProductById;
+// delete product by id
 const deleteProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { id } = req.params; // Get product ID from the URL params
-        // Attempt to find and delete the product by ID
+        const { id } = req.params;
         const product = yield product_model_1.default.findByIdAndDelete(id);
         if (!product) {
             return res.status(404).json({

@@ -2,8 +2,8 @@ import mongoose, { Schema, Document } from "mongoose";
 
 enum Category {
   Writing = "Writing",
-  OfficeSupplies = "OfficeSupplies",
-  ArtSupplies = "ArtSupplies",
+  OfficeSupplies = "Office Supplies",
+  ArtSupplies = "Art Supplies",
   Educational = "Educational",
   Technology = "Technology",
 }

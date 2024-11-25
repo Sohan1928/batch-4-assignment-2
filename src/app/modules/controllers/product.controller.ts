@@ -1,7 +1,24 @@
 import { Request, Response } from "express";
 import Product from "../models/product.model";
 
-// Controller function to create a product
+// get all products
+export const getAllProducts = async (req: Request, res: Response) => {
+  try {
+    const products = await Product.find(); // Fetch all products from the database
+    res.status(200).json({
+      message: "Products fetched successfully",
+      success: true,
+      data: products,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      message: "Failed to fetch products",
+      success: false,
+      error: error.message,
+    });
+  }
+};
+// create product
 export const createProduct = async (req: Request, res: Response) => {
   try {
     const product = await Product.create(req.body);
@@ -19,14 +36,15 @@ export const createProduct = async (req: Request, res: Response) => {
   }
 };
 
+// update product by id
 export const updateProduct: any = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params; // Get product ID from params
-    const updateData = req.body; // Get the updated data from the request body
+    const { id } = req.params;
+    const updateData = req.body;
 
     const updatedProduct = await Product.findByIdAndUpdate(id, updateData, {
-      new: true, // Return the updated document
-      runValidators: true, // Run validation for the updated data
+      new: true,
+      runValidators: true,
     });
 
     if (!updatedProduct) {
@@ -50,7 +68,7 @@ export const updateProduct: any = async (req: Request, res: Response) => {
   }
 };
 
-// Add other controller functions, like getting a product by ID
+// get product by id
 export const getProductById: any = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -75,11 +93,11 @@ export const getProductById: any = async (req: Request, res: Response) => {
   }
 };
 
+// delete product by id
 export const deleteProduct: any = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params; // Get product ID from the URL params
+    const { id } = req.params;
 
-    // Attempt to find and delete the product by ID
     const product = await Product.findByIdAndDelete(id);
 
     if (!product) {

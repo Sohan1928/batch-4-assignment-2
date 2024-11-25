@@ -7,13 +7,13 @@ import {
 
 const router = express.Router();
 
-// Route to get all orders
+// get all orders
 router.get("/orders", getAllOrders);
 
-// Route to create an order
+// create an order
 router.post("/orders", createOrder);
 
-// Route to calculate total revenue
+// calculate total revenue
 router.get("/revenue", calculateRevenue);
 
 export default router;

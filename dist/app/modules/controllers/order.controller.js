@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.calculateRevenue = exports.getAllOrders = exports.createOrder = void 0;
 const product_model_1 = __importDefault(require("../models/product.model"));
 const order_model_1 = __importDefault(require("../models/order.model"));
-// Function to create an order
+// create an order
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { product, quantity, email } = req.body;
@@ -28,7 +28,7 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         }
         if (productData.quantity < quantity) {
             return res.status(400).json({
-                message: "Insufficient stock",
+                message: "Stock not available",
                 success: false,
             });
         }
@@ -52,12 +52,12 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.createOrder = createOrder;
-// Function to get all orders
+// get all orders
 const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const orders = yield order_model_1.default.find();
         res.status(200).json({
-            message: "Order list fetched successfully",
+            message: "Order list show successfully",
             success: true,
             data: orders,
         });
@@ -71,7 +71,7 @@ const getAllOrders = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.getAllOrders = getAllOrders;
-// Function to calculate total revenue from all orders
+// calculate total revenue from all orders
 const calculateRevenue = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const orders = yield order_model_1.default.find();
