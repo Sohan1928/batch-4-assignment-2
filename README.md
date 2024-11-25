@@ -2,6 +2,8 @@
 
 ## Vercel Live Link: https://stationery-shop-b4a2v5.vercel.app
 
+## Explanation Video Link: https://drive.google.com/file/d/1lZx93Px0xtg8KIafScASUewRMn5sJUr5/view
+
 This is a simple API project for managing products and orders in a stationery shop. Built using **Node.js**, **Express**, **TypeScript**, and **MongoDB**.
 
 ## Features
